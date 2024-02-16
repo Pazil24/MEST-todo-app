@@ -1,8 +1,24 @@
+import React from "react";
+
 function TodoList() {
+
+    // let todos;
+
+    const [todos, setTodos] = React.useState([]);
+
+    function getTodos () {
+        //Get existing list of todos from local storage
+        let todos = JSON.parse(localStorage.getItem("TODO")) || [];
+        // Update React State
+        setTodos(todos);
+    }
+    React.useEffect(getTodos, []);
+
     return (
         <ul>
-            <li>Complete online javascript course</li>
-            <li>Jog around the park 3 times</li>
+            {todos.map(function(todo, index) {
+                return <li key={index}>{todo}</li>
+            })}
         </ul>
     );
 }

@@ -10,7 +10,14 @@ function AddTodo() {
     }
 
     function saveTodo() {
-        console.log(todo);
+        //Get existing list of todos from local storage
+        let todos = JSON.parse(localStorage.getItem("TODO")) || [];
+
+        //Add new todo to existing list of todos
+        todos.push(todo);
+
+        //Set all todos in local storage
+        localStorage.setItem("TODO", JSON.stringify(todos));
     }
 
 
