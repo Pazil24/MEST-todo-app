@@ -1,25 +1,14 @@
-import React from "react";
+import { useLocalStorage } from "usehooks-ts";
 
 function TodoList() {
-
-    // let todos;
-
-    const [todos, setTodos] = React.useState([]);
-
-    function getTodos () {
-        //Get existing list of todos from local storage
-        let todos = JSON.parse(localStorage.getItem("TODO")) || [];
-        // Update React State
-        setTodos(todos);
-    }
-    React.useEffect(getTodos, []);
+    const [todos, setTodos] = useLocalStorage("TODO", []);
 
     return (
-        <ul>
+        <ol>
             {todos.map(function(todo, index) {
                 return <li key={index}>{todo}</li>
             })}
-        </ul>
+        </ol>
     );
 }
 
