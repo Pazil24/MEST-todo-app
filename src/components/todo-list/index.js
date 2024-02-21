@@ -1,14 +1,24 @@
 import { useLocalStorage } from "usehooks-ts";
+import TodoItem from "../todo-item";
 
 function TodoList() {
     const [todos, setTodos] = useLocalStorage("TODO", []);
 
+    function deleteAll () {
+        setTodos([]);
+    }
+
     return (
-        <ol>
+        <section>
+            <button onClick={deleteAll} className='btn btn-danger'>
+                DeleteAll
+            </button>
+        <ol className='list-group'>
             {todos.map(function(todo, index) {
-                return <li key={index}>{todo}</li>
+               return <TodoItem todo={todo} index={index}/>
             })}
         </ol>
+        </section>
     );
 }
 

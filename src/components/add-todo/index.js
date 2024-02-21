@@ -21,12 +21,15 @@ function AddTodo() {
         //Set all todos in local storage
         // localStorage.setItem("TODO", JSON.stringify(todos));
         setTodos([...todos, todo]);
+        // Wipe the input
+        setTodo("");
     }
 
 
     return (
         <section className={styles.addTodo}>
             <input
+                value={todo}
                 onChange={collectInput}
                 className={styles.addTodoInput}
                 placeholder="Start typing..." />
